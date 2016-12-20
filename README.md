@@ -65,6 +65,6 @@ Version 0.4.0
 
 - Watch out for possible bug in readxl:::xlsx_col_types where sheets seem to be numbered from 0 when in read_excel its from 1
 
-
+- split_transect ne prend pas en compte les valeurs mitoyennes dans le split des transects 
 
 
