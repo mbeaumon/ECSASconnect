@@ -67,12 +67,12 @@ data2SOMEC<-function(
 	sheets<-excel_sheets(input)
 	
 	ns<-agrep("transect",sheets,ignore.case=TRUE)[1]
-	type<-readxl:::xlsx_col_types(input,sheet=ns-1,nskip=1) #get nb of columns, possible bug in the number given to shhet in xlsx_col_types compared to read_excel?
+	type<-read_excel(input,sheet=ns,guess_max = 1048576) #get nb of columns, possible bug in the number given to shhet in xlsx_col_types compared to read_excel?
 	tran <- as.data.frame(read_excel(input,sheet=sheets[ns],col_types=rep("text",length(type))),stringsAsFactors=FALSE)
 	tran[]<-lapply(tran,function(i){type.convert(i,as.is=TRUE)})
 	
 	ns<-agrep("observation",sheets,ignore.case=TRUE)[1]
-	type<-readxl:::xlsx_col_types(input,sheet=ns-1,nskip=1) #get nb of columns
+	type<-read_excel(input,sheet=ns,guess_max = 1048576) #get nb of columns
 	obs <- as.data.frame(read_excel(input,sheet=sheets[ns],col_types=rep("text",length(type))),stringsAsFactors=FALSE) 
 	obs[]<-lapply(obs,function(i){type.convert(i,as.is=TRUE)})
 	
